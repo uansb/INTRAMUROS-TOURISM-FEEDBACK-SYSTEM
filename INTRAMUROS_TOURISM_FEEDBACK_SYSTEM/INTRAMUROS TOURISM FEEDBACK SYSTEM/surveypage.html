@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey - Intramuros Heritage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🏛 Intramuros Heritage</div>
+        <nav>
+            <a href="index.html">
+                <span class="lang en">Home</span>
+                <span class="lang fil">Home</span>
+            </a>
+            <a href="aboutus.html">
+                <span class="lang en">About</span>
+                <span class="lang fil">Tungkol</span>
+            </a>
+            <a href="surveypage.html" class="active">
+                <span class="lang en">Survey</span>
+                <span class="lang fil">Survey</span>
+            </a>
+            <a href="resultspage.html">
+                <span class="lang en">Results</span>
+                <span class="lang fil">Resulta</span>
+            </a>
+            <div class="lang-toggle">
+                <button onclick="setLanguage('en')" id="btn-en" class="active">English</button>
+                <button onclick="setLanguage('fil')" id="btn-fil">Filipino</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="survey-header">
+            <h1>
+                <span class="lang en">Tourist Feedback Survey</span>
+                <span class="lang fil">Survey para sa Feedback ng Turista</span>
+            </h1>
+            <p>
+                <span class="lang en">Help us improve your Intramuros experience</span>
+                <span class="lang fil">Tulungan kaming mapabuti ang iyong karanasan sa Intramuros</span>
+            </p>
+        </div>
+
+        <form id="survey-form">
+
+            <!-- Demographic Information -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Demographic Information</span>
+                    <span class="lang fil">Impormasyong Demograpiko</span>
+                </h2>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Full Name (Optional)</span>
+                        <span class="lang fil">Buong Pangalan (Opsyonal)</span>
+                    </p>
+                    <input type="text" name="full_name" placeholder="Enter your full name">
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Age Group *</span>
+                        <span class="lang fil">Pangkat ng Edad *</span>
+                    </p>
+                    <select name="age_group" required>
+                        <option value="" disabled selected>Select your age group</option>
+                        <option value="under18">Under 18</option>
+                        <option value="18-24">18 - 24</option>
+                        <option value="25-34">25 - 34</option>
+                        <option value="35-44">35 - 44</option>
+                        <option value="45-54">45 - 54</option>
+                        <option value="55plus">55 or older</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Type of Tourist *</span>
+                        <span class="lang fil">Uri ng Turista *</span>
+                    </p>
+                    <select name="tourist_type" required>
+                        <option value="" disabled selected>Select tourist type</option>
+                        <option value="local_resident">Local Resident (Manila)</option>
+                        <option value="domestic">Domestic Tourist (Philippines)</option>
+                        <option value="international">International Tourist</option>
+                        <option value="student">Student / Educational Trip</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Where are you from? (Region/Country) *</span>
+                        <span class="lang fil">Taga-saan ka? (Rehiyon/Bansa) *</span>
+                    </p>
+                    <input type="text" name="origin" placeholder="e.g. Pasig, Philippines" required>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Visit Date *</span>
+                        <span class="lang fil">Petsa ng Pagbisita *</span>
+                    </p>
+                    <input type="date" name="visit_date" required>
+                </div>
+            </div>
+
+            <!-- Architecture & Environment -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Architecture & Environment</span>
+                    <span class="lang fil">Arkitektura at Kapaligiran</span>
+                </h2>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">How would you rate the preservation and visual appeal of the historic architecture and scenery? *</span>
+                        <span class="lang fil">Paano mo ire-rate ang preserbasyon at ganda ng mga makasaysayang arkitektura at tanawin? *</span>
+                    </p>
+                    <div class="star-rating">
+                        <input type="radio" name="q1_1" id="star5" value="5" required>
+                        <label for="star5">★</label>
+                        <input type="radio" name="q1_1" id="star4" value="4" required>
+                        <label for="star4">★</label>
+                        <input type="radio" name="q1_1" id="star3" value="3" required>
+                        <label for="star3">★</label>
+                        <input type="radio" name="q1_1" id="star2" value="2" required>
+                        <label for="star2">★</label>
+                        <input type="radio" name="q1_1" id="star1" value="1" required>
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Compared to the modern "straight box/gray" buildings of Manila, what specific architectural or environmental features should be prioritized for preservation? *</span>
+                        <span class="lang fil">Kumpara sa mga modernong gusali sa Maynila, anong mga partikular na katangiang arkitektural o pangkapaligiran ang dapat unahin sa preserbasyon? *</span>
+                    </p>
+                    <textarea name="preservation_priority" placeholder="Type your answer here..." required></textarea>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Which atmospheric elements of Intramuros contributed most to your overall experience? Select all that apply. *</span>
+                        <span class="lang fil">Aling mga elemento ng kapaligiran sa Intramuros ang pinaka-nakatulong sa iyong karanasan? Piliin ang lahat ng naaangkop. *</span>
+                    </p>
+                    <div class="options">
+                        <label>
+                            <input type="checkbox" name="atmosphere" value="spanish_architecture">
+                            <span class="lang en">Well-preserved Spanish-era architecture</span>
+                            <span class="lang fil">Maayos na napangalagaang arkitektura mula sa panahon ng Espanyol</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="atmosphere" value="scenery">
+                            <span class="lang en">Picturesque scenery</span>
+                            <span class="lang fil">Magagandang tanawin</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="atmosphere" value="cultural">
+                            <span class="lang en">Traditional cultural presence (e.g., kalesa rides and cobblestone streets)</span>
+                            <span class="lang fil">Tradisyonal na presensyang kultural (hal. pagsakay sa kalesa at mga kalsadang cobblestone)</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="atmosphere" value="ancient_ambiance">
+                            <span class="lang en">"Ancient-world" ambiance</span>
+                            <span class="lang fil">Ambiyanseng "Ancient-world"</span>
+                        </label>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px; padding-left: 8px;">
+                            <span class="lang en">Other:</span>
+                            <span class="lang fil">Iba pa:</span>
+                            <input type="text" name="other_atmosphere" placeholder="..." style="flex: 1; padding: 5px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance & Rules -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Maintenance & Rules</span>
+                    <span class="lang fil">Pagpapanatili at mga Panuntunan</span>
+                </h2>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">To what extent do you agree the destination is well-maintained? *</span>
+                        <span class="lang fil">Gaano ka sumasang-ayon na ang destinasyon ay maayos na pinapanatili? *</span>
+                    </p>
+                    <div class="emoji-rating">
+                        <input type="radio" name="q2" id="e1" value="1" required>
+                        <label for="e1">
+                            <span class="emoji">😔</span>
+                            <span class="text">
+                                <span class="lang en">Strongly Disagree</span>
+                                <span class="lang fil">Lubos na Hindi Sumasang-ayon</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q2" id="e2" value="2" required>
+                        <label for="e2">
+                            <span class="emoji">😕</span>
+                            <span class="text">
+                                <span class="lang en">Disagree</span>
+                                <span class="lang fil">Hindi Sumasang-ayon</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q2" id="e3" value="3" required>
+                        <label for="e3">
+                            <span class="emoji">😐</span>
+                            <span class="text">
+                                <span class="lang en">Neutral</span>
+                                <span class="lang fil">Neutral</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q2" id="e4" value="4" required>
+                        <label for="e4">
+                            <span class="emoji">🙂</span>
+                            <span class="text">
+                                <span class="lang en">Agree</span>
+                                <span class="lang fil">Sumasang-ayon</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q2" id="e5" value="5" required>
+                        <label for="e5">
+                            <span class="emoji">😍</span>
+                            <span class="text">
+                                <span class="lang en">Strongly Agree</span>
+                                <span class="lang fil">Lubos na Sumasang-ayon</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affordability -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Affordability</span>
+                    <span class="lang fil">Kakayahang Bayaran</span>
+                </h2>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">How would you rate the affordability of products and services? *</span>
+                        <span class="lang fil">Paano mo ire-rate ang pagiging abot-kaya ng mga produkto at serbisyo? *</span>
+                    </p>
+                    <div class="peso-rating">
+                        <input type="radio" name="q3" id="peso5" value="5" required>
+                        <label for="peso5">
+                            <span class="peso-sign">₱</span>
+                            <span class="peso-text">
+                                <span class="lang en">Very Expensive</span>
+                                <span class="lang fil">Napakamahal</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q3" id="peso4" value="4" required>
+                        <label for="peso4">
+                            <span class="peso-sign">₱</span>
+                            <span class="peso-text">
+                                <span class="lang en">Expensive</span>
+                                <span class="lang fil">Mahal</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q3" id="peso3" value="3" required>
+                        <label for="peso3">
+                            <span class="peso-sign">₱</span>
+                            <span class="peso-text">
+                                <span class="lang en">Average</span>
+                                <span class="lang fil">Katamtaman</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q3" id="peso2" value="2" required>
+                        <label for="peso2">
+                            <span class="peso-sign">₱</span>
+                            <span class="peso-text">
+                                <span class="lang en">Affordable</span>
+                                <span class="lang fil">Abot-kaya</span>
+                            </span>
+                        </label>
+                        <input type="radio" name="q3" id="peso1" value="1" required>
+                        <label for="peso1">
+                            <span class="peso-sign">₱</span>
+                            <span class="peso-text">
+                                <span class="lang en">Very Affordable</span>
+                                <span class="lang fil">Napaka Abot-kaya</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Navigation</span>
+                    <span class="lang fil">Paglalakbay</span>
+                </h2>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">How easy was it to navigate the area? *</span>
+                        <span class="lang fil">Gaano kadali ang maglibot sa lugar? *</span>
+                    </p>
+                    <div class="nav-slider-wrapper">
+                        <div class="nav-line"></div>
+                        <div class="nav-ticks">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <input type="range" min="1" max="5" step="1" value="5" class="nav-range" name="q4">
+                        <div class="nav-labels">
+                            <div class="label-box">
+                                <span class="lang en">Very Easy</span>
+                                <span class="lang fil">Napakamadali</span>
+                            </div>
+                            <div class="label-box">
+                                <span class="lang en">Easy</span>
+                                <span class="lang fil">Madali</span>
+                            </div>
+                            <div class="label-box">
+                                <span class="lang en">Neutral</span>
+                                <span class="lang fil">Neutral</span>
+                            </div>
+                            <div class="label-box">
+                                <span class="lang en">Difficult</span>
+                                <span class="lang fil">Mahirap</span>
+                            </div>
+                            <div class="label-box">
+                                <span class="lang en">Very Difficult</span>
+                                <span class="lang fil">Napakahirap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- Survey Experience -->
+        <div class="form-container">
+            <h2 class="category-title">
+                <span class="lang en">Survey Experience</span>
+                <span class="lang fil">Karanasan sa Survey</span>
+            </h2>
+            <div class="question">
+                <p>
+                    <span class="lang en">How was your experience answering our survey system? *</span>
+                    <span class="lang fil">Kumusta ang iyong karanasan sa pagsagot ng aming survey system? *</span>
+                </p>
+                <div class="options">
+                    <label><input type="radio" name="survey_experience" value="1" required> 1 - <span class="lang en">Very Poor</span><span class="lang fil">Napakasama</span></label>
+                    <label><input type="radio" name="survey_experience" value="2"> 2 - <span class="lang en">Poor</span><span class="lang fil">Masama</span></label>
+                    <label><input type="radio" name="survey_experience" value="3"> 3 - <span class="lang en">Neutral</span><span class="lang fil">Neutral</span></label>
+                    <label><input type="radio" name="survey_experience" value="4"> 4 - <span class="lang en">Good</span><span class="lang fil">Maganda</span></label>
+                    <label><input type="radio" name="survey_experience" value="5"> 5 - <span class="lang en">Excellent</span><span class="lang fil">Napakaganda</span></label>
+                </div>
+            </div>
+       
+   
+
+
+    <br>
+
+
+    <div class="question">
+        <p>
+            <span class="lang en">Please give us your feedback.</span>
+            <span class="lang fil">Mangyaring ibigay ang iyong feedback.</span>
+        </p>
+        <textarea name="survey_feedback" placeholder="Type your feedback here..."></textarea>
+    </div>
+</div>
+
+
+
+            <div class="submit-section">
+                <button type="reset" class="clear-button">
+                    <span class="lang en">Clear All</span>
+                    <span class="lang fil">I-clear Lahat</span>
+                </button>
+                <button type="submit" class="submit-btn" disabled>
+                    <span class="lang en">Submit Feedback</span>
+                    <span class="lang fil">I-submit ang Feedback</span>
+                </button>
+            </div>
+
+            <div id="thankYouModal" class="thankyou-modal">
+                <div class="thankyou-box">
+                    <h2>
+                        <span class="lang en">Thank you for answering! 🎉</span>
+                        <span class="lang fil">Salamat sa pagsagot! 🎉</span>
+                    </h2>
+                    <p>
+                        <span class="lang en">Your feedback helps improve Intramuros.</span>
+                        <span class="lang fil">Ang iyong feedback ay tumutulong upang mapabuti ang Intramuros.</span>
+                    </p>
+                    <a href="index.html" class="home-btn">
+                        <span class="lang en">Go Back to Home</span>
+                        <span class="lang fil">Bumalik sa Home</span>
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>(c) 2026 Intramuros Heritage Feedback. A College Web Development Project.</p>
+        <p>
+            <span class="lang en">Preserving History, Building the Future</span>
+            <span class="lang fil">Pagpapanatili ng Kasaysayan, Pagbuo ng Kinabukasan</span>
+        </p>
+    </footer>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
+
+
+
+

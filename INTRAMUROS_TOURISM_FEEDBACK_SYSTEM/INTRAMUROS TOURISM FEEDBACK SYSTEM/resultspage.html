@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Intramuros Heritage</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .stat-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); text-align: center; }
+        .stat-card h3 { margin: 0 0 0.5rem; font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-card .score { font-size: 2.8rem; font-weight: 700; color: #b5862a; }
+        .stat-card .label { font-size: 0.8rem; color: #999; }
+
+
+
+
+        /* Bar chart */
+        .bar-chart { margin: 1.5rem 0; }
+        .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .bar-label { width: 140px; font-size: 13px; color: #444; text-align: right; flex-shrink: 0; }
+        .bar-track { flex: 1; background: #f0ede6; border-radius: 99px; height: 22px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #b5862a, #d4a841); border-radius: 99px; transition: width 0.8s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 28px; }
+        .bar-fill span { font-size: 11px; color: white; font-weight: 600; }
+
+
+
+
+        /* Responses table */
+        .responses-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .responses-table th { background: #f5f0e8; padding: 10px; text-align: left; border-bottom: 2px solid #d4a841; }
+        .responses-table td { padding: 9px 10px; border-bottom: 1px solid #f0ede6; vertical-align: top; }
+        .responses-table tr:hover td { background: #faf8f3; }
+
+
+
+
+        /* Architecture & Environment table */
+        .arch-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .arch-table th { background: #f5f0e8; padding: 10px; text-align: left; border-bottom: 2px solid #d4a841; }
+        .arch-table td { padding: 9px 10px; border-bottom: 1px solid #f0ede6; vertical-align: top; }
+        .arch-table tr:hover td { background: #faf8f3; }
+        .arch-table .star-display { color: #d4a841; font-size: 14px; letter-spacing: 1px; }
+        .arch-table .text-answer { color: #444; font-style: italic; max-width: 260px; line-height: 1.4; }
+        .arch-table .tags { display: flex; flex-wrap: wrap; gap: 4px; max-width: 220px; }
+        .arch-table .tag { background: #f5f0e8; border: 1px solid #d4a841; color: #7a5a1a; border-radius: 99px; padding: 2px 8px; font-size: 11px; white-space: nowrap; }
+
+
+
+
+        /* Section subtitle */
+        .section-sub { font-size: 12px; color: #999; font-weight: normal; margin-left: 8px; }
+
+
+
+
+        .loading { text-align: center; padding: 3rem; color: #888; }
+        .total-badge { background: #b5862a; color: white; padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; margin-left: 8px; }
+
+
+
+
+        /* Atmosphere bar */
+        .atmosphere-bar-fill { background: linear-gradient(90deg, #7a5a1a, #b5862a); }
+
+
+
+
+        /* Scrollable table wrapper */
+        .table-scroll { overflow-x: auto; }
+    </style>
+</head>
+<body>
+
+
+
+
+    <header>
+        <div class="logo">🏛 Intramuros Heritage</div>
+        <nav>
+            <a href="homepage.html">
+                <span class="lang en">Home</span><span class="lang fil">Home</span>
+            </a>
+            <a href="aboutus.html">
+                <span class="lang en">About</span><span class="lang fil">Tungkol</span>
+            </a>
+            <a href="surveypage.html">
+                <span class="lang en">Survey</span><span class="lang fil">Survey</span>
+            </a>
+            <a href="resultspage.html" class="active">
+                <span class="lang en">Results</span><span class="lang fil">Resulta</span>
+            </a>
+            <div class="lang-toggle">
+                <button onclick="setLanguage('en')" id="btn-en" class="active">English</button>
+                <button onclick="setLanguage('fil')" id="btn-fil">Filipino</button>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <main class="main-wrapper">
+        <div class="survey-header">
+            <h1>
+                <span class="lang en">Survey Results</span>
+                <span class="lang fil">Mga Resulta ng Survey</span>
+            </h1>
+            <p>
+                <span class="lang en">Live statistics from tourist feedback</span>
+                <span class="lang fil">Mga live na istatistika mula sa feedback ng turista</span>
+                <span id="total-badge" class="total-badge">Loading...</span>
+            </p>
+        </div>
+
+
+
+
+        <div id="loading" class="loading">⏳ Loading responses...</div>
+
+
+
+
+        <div id="content" style="display:none">
+
+
+
+
+            <!-- Average Ratings -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Average Ratings (out of 5)</span>
+                    <span class="lang fil">Karaniwang Rating (sa 5)</span>
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-card"><h3>Architecture</h3><div class="score" id="avg-arch">–</div><div class="label">avg rating</div></div>
+                    <div class="stat-card"><h3>Maintenance</h3><div class="score" id="avg-maint">–</div><div class="label">avg rating</div></div>
+                    <div class="stat-card"><h3>Affordability</h3><div class="score" id="avg-afford">–</div><div class="label">avg rating</div></div>
+                    <div class="stat-card"><h3>Navigation</h3><div class="score" id="avg-nav">–</div><div class="label">avg rating</div></div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Tourist Type Breakdown -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Tourist Type Breakdown</span>
+                    <span class="lang fil">Breakdown ng Uri ng Turista</span>
+                </h2>
+                <div class="bar-chart" id="tourist-bars"></div>
+            </div>
+
+
+
+
+            <!-- Age Group Breakdown -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Age Group Breakdown</span>
+                    <span class="lang fil">Breakdown ng Pangkat ng Edad</span>
+                </h2>
+                <div class="bar-chart" id="age-bars"></div>
+            </div>
+
+
+
+
+            <!-- Recent Responses Table -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Recent Responses</span>
+                    <span class="lang fil">Mga Kamakailang Tugon</span>
+                </h2>
+                <div class="table-scroll">
+                    <table class="responses-table">
+                        <thead><tr>
+                            <th>Name</th><th>Age</th><th>Type</th><th>Origin</th><th>Visit Date</th>
+                            <th>Arch.</th><th>Maint.</th><th>Afford.</th><th>Nav.</th>
+                        </tr></thead>
+                        <tbody id="responses-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <!-- Architecture & Environment Section -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Architecture &amp; Environment</span>
+                    <span class="lang fil">Arkitektura at Kapaligiran</span>
+                </h2>
+
+
+
+
+                <!-- Sub: Atmosphere Elements Breakdown -->
+                <h3 style="font-size:0.95rem; color:#7a5a1a; margin: 1rem 0 0.5rem;">
+                    <span class="lang en">Atmospheric Elements Selected</span>
+                    <span class="lang fil">Mga Piling Elemento ng Kapaligiran</span>
+                </h3>
+                <div class="bar-chart" id="atmosphere-bars"></div>
+
+
+
+
+                <!-- Sub: Per-Response Table -->
+                <h3 style="font-size:0.95rem; color:#7a5a1a; margin: 1.5rem 0 0.5rem;">
+                    <span class="lang en">Individual Responses</span>
+                    <span class="lang fil">Mga Indibidwal na Tugon</span>
+                </h3>
+                <div class="table-scroll">
+                    <table class="arch-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>
+                                    Preservation &amp; Visual Appeal Rating
+                                    <span class="section-sub">(Q1)</span>
+                                </th>
+                                <th>
+                                    Atmospheric Elements Selected
+                                    <span class="section-sub">(Q3 — checkboxes)</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="arch-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </main>
+
+
+    <footer>
+        <p>Intramuros Heritage Feedback Website. A Web Development Assessment Activity.
+</p>
+        <p>
+            <span class="lang en">Preserving History, Building the Future</span>
+            <span class="lang fil">Pagpapanatili ng Kasaysayan, Pagbuo ng Kinabukasan</span>
+        </p>
+    </footer>
+
+
+
+
+<script type="module">
+ /* ─────────────────────────────────────────
+     APIS
+    ───────────────────────────────────────── */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDYZmNpah2WuEocd5IrEB6sT_RDaP_jl54",
+  authDomain: "wdaa-89a45.firebaseapp.com",
+  projectId: "wdaa-89a45",
+  storageBucket: "wdaa-89a45.firebasestorage.app",
+  messagingSenderId: "626118744624",
+  appId: "1:626118744624:web:e412bf44f028494a86abf5",
+  measurementId: "G-FSJQ7LQWW9"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+/*───────────────────────────────────────── */
+
+
+
+
+/* ─────────────────────────────────────────
+   Tables & Charts
+   ───────────────────────────────────────── */
+
+
+// Friendly labels for atmosphere values
+const atmosphereLabels = {
+    spanish_architecture: 'Spanish-era Architecture',
+    scenery:              'Picturesque Scenery',
+    cultural:            'Traditional Cultural Presence',
+    ancient_ambiance:    '"Ancient-world" Ambiance'
+};
+
+
+
+
+// Friendly labels for age groups
+const ageLabels = {
+    under18: 'Under 18',
+    '18-24': '18 – 24',
+    '25-34': '25 – 34',
+    '35-44': '35 – 44',
+    '45-54': '45 – 54',
+    '55plus': '55 or older'
+};
+
+
+
+
+// Friendly labels for tourist types
+function formatTouristType(raw) {
+    if (!raw) return '—';
+    return raw
+        .replace(/_/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+
+
+
+// Stars renderer
+function stars(val) {
+    const n = Number(val);
+    if (!n) return '—';
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+
+
+
+
+// Bar chart renderer (shared)
+function renderBars(containerId, counts, labelMap, extraFillClass) {
+    const maxCount = Math.max(...Object.values(counts), 1);
+    document.getElementById(containerId).innerHTML = Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([key, val]) => {
+            const label = (labelMap && labelMap[key]) ? labelMap[key] : key;
+            const fillClass = extraFillClass ? ` ${extraFillClass}` : '';
+            return `
+            <div class="bar-row">
+                <div class="bar-label">${label}</div>
+                <div class="bar-track">
+                    <div class="bar-fill${fillClass}" style="width:${(val / maxCount * 100).toFixed(1)}%">
+                        <span>${val}</span>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+}
+
+
+
+
+// Bar chart renderer for tourist types (applies formatTouristType to raw keys)
+function renderTouristBars(containerId, counts) {
+    const maxCount = Math.max(...Object.values(counts), 1);
+    document.getElementById(containerId).innerHTML = Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([key, val]) => {
+            const label = formatTouristType(key);
+            return `
+            <div class="bar-row">
+                <div class="bar-label">${label}</div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width:${(val / maxCount * 100).toFixed(1)}%">
+                        <span>${val}</span>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+}
+
+
+/* ─────────────────────────────────────────  */
+
+
+
+
+/* ─────────────────────────────────────────
+Languages
+───────────────────────────────────────── */
+window.setLanguage = function(lang) {
+    document.body.className = 'lang-' + lang;
+    const btnEn = document.getElementById('btn-en');
+    const btnFil = document.getElementById('btn-fil');
+    if (btnEn && btnFil) {
+        btnEn.classList.remove('active');
+        btnFil.classList.remove('active');
+        document.getElementById('btn-' + lang).classList.add('active');
+    }
+    localStorage.setItem('preferredLang', lang);
+}
+
+
+
+
+window.onload = () => {
+    const savedLang = localStorage.getItem('preferredLang') || 'en';
+    window.setLanguage(savedLang);
+    loadResults();
+}
+/* ─────────────────────────────────────────  */
+
+
+async function loadResults() {
+
+
+    /* ─────────────────────────────────────────
+       Fetch Data from Firestore
+       ───────────────────────────────────────── */
+    const q = query(collection(db, 'survey_responses'), orderBy('submittedAt', 'desc'));
+    const snapshot = await getDocs(q);
+
+
+
+
+    /* ─────────────────────────────────────────
+       Initialize Counters
+       ───────────────────────────────────────── */
+    let totalArch = 0, totalMaint = 0, totalAfford = 0, totalNav = 0;
+    let count = 0;
+    const touristCounts    = {};
+    const ageCounts        = {};
+    const atmosphereCounts = {};
+    const recentResponses  = [];
+    const archResponses    = [];
+
+
+
+
+    /* ─────────────────────────────────────────
+       Loop Through Responses
+       ───────────────────────────────────────── */
+    snapshot.forEach(doc => {
+        const d = doc.data();
+        count++;
+
+
+        totalArch   += Number(d.architectureRating)  || 0;
+        totalMaint  += Number(d.maintenanceRating)   || 0;
+        totalAfford += Number(d.affordabilityRating) || 0;
+        totalNav    += Number(d.navigationRating)    || 0;
+
+
+        const t = d.touristType || 'Unknown';
+        touristCounts[t] = (touristCounts[t] || 0) + 1;
+
+
+        const ag = d.ageGroup || 'Unknown';
+        ageCounts[ag] = (ageCounts[ag] || 0) + 1;
+
+
+        (d.atmosphereElements || []).forEach(el => {
+            atmosphereCounts[el] = (atmosphereCounts[el] || 0) + 1;
+        });
+
+
+        recentResponses.push(d);
+        if (archResponses.length < 15) archResponses.push(d);
+    });
+
+
+
+
+    /* ─────────────────────────────────────────
+       Show Page & Update Summary Stats
+       ───────────────────────────────────────── */
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+
+
+    document.getElementById('total-badge').textContent = count + ' responses';
+
+
+    document.getElementById('avg-arch').textContent   = count ? (totalArch / count).toFixed(1)   : '—';
+    document.getElementById('avg-maint').textContent  = count ? (totalMaint / count).toFixed(1)  : '—';
+    document.getElementById('avg-afford').textContent = count ? (totalAfford / count).toFixed(1) : '—';
+    document.getElementById('avg-nav').textContent    = count ? (totalNav / count).toFixed(1)    : '—';
+
+
+
+
+    /* ─────────────────────────────────────────
+       Render Bar Charts
+       ───────────────────────────────────────── */
+    renderTouristBars('tourist-bars', touristCounts);
+
+
+    const ageOrder = ['under18', '18-24', '25-34', '35-44', '45-54', '55plus'];
+    const orderedAgeCounts = {};
+    ageOrder.forEach(k => { if (ageCounts[k] !== undefined) orderedAgeCounts[k] = ageCounts[k] || 0; });
+    Object.keys(ageCounts).forEach(k => { if (!orderedAgeCounts[k]) orderedAgeCounts[k] = ageCounts[k]; });
+
+
+    const ageMaxCount = Math.max(...Object.values(orderedAgeCounts), 1);
+    document.getElementById('age-bars').innerHTML = Object.entries(orderedAgeCounts)
+        .map(([key, val]) => {
+            const label = ageLabels[key] || key;
+            return `
+            <div class="bar-row">
+                <div class="bar-label">${label}</div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width:${(val / ageMaxCount * 100).toFixed(1)}%">
+                        <span>${val}</span>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+
+
+    renderBars('atmosphere-bars', atmosphereCounts, atmosphereLabels, 'atmosphere-bar-fill');
+
+
+
+
+    /* ─────────────────────────────────────────
+       Render Tables
+       ───────────────────────────────────────── */
+    document.getElementById('arch-table-body').innerHTML = archResponses.map((d, i) => {
+        const rating = d.architectureRating;
+        const starsHtml = rating
+            ? `<span class="star-display">${'★'.repeat(Number(rating))}${'☆'.repeat(5 - Number(rating))}</span> <small>(${rating}/5)</small>`
+            : '—';
+
+
+        const elements = d.atmosphereElements || [];
+        const otherAtm = d.otherAtmosphere ? `Other: ${d.otherAtmosphere}` : '';
+        const allTags  = [
+            ...elements.map(el => atmosphereLabels[el] || el),
+            ...(otherAtm ? [otherAtm] : [])
+        ];
+        const tagsHtml = allTags.length
+            ? `<div class="tags">${allTags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+            : '<span style="color:#ccc">—</span>';
+
+
+        return `<tr>
+            <td style="color:#999;font-size:11px;">${i + 1}</td>
+            <td>${escapeHtml(d.name || '—')}</td>
+            <td>${starsHtml}</td>
+            <td>${tagsHtml}</td>
+        </tr>`;
+    }).join('');
+
+
+    document.getElementById('responses-body').innerHTML = recentResponses.map(d => `
+        <tr>
+            <td>${escapeHtml(d.name || '—')}</td>
+            <td>${ageLabels[d.ageGroup] || d.ageGroup || '—'}</td>
+            <td>${formatTouristType(d.touristType)}</td>
+            <td>${escapeHtml(d.origin || '—')}</td>
+            <td>${escapeHtml(d.visitDate || '—')}</td>
+            <td>${d.architectureRating  || '—'}/5</td>
+            <td>${d.maintenanceRating   || '—'}/5</td>
+            <td>${d.affordabilityRating || '—'}/5</td>
+            <td>${d.navigationRating    || '—'}/5</td>
+        </tr>
+    `).join('');
+}
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+</script>
+
+
+</body>
+</html>
+
+
+

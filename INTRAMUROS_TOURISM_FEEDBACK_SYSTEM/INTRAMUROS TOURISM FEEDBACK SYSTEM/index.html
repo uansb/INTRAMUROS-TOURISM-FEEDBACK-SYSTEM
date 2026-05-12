@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Intramuros Heritage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🏛 Intramuros Heritage</div>
+        <nav>
+            <a href="homepage.html" class="active">
+                <span class="lang en">Home</span><span class="lang fil">Home</span>
+            </a>
+            <a href="aboutus.html">
+                <span class="lang en">About</span><span class="lang fil">Tungkol</span>
+            </a>
+
+            <div class="lang-toggle">
+                <button onclick="setLanguage('en')" id="btn-en" class="active">English</button>
+                <button onclick="setLanguage('fil')" id="btn-fil">Filipino</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="intramuros-image">
+        <img src="Images/Walled City of Intramuros.jpg" alt="Intramuros Stone Wall">
+    </section>
+
+    <section class="container">
+        <div class="intro-card">
+            <h1>
+                <span class="lang en">Discover the Heart of Manila</span>
+                <span class="lang fil">Tuklasin ang Puso ng Maynila</span>
+            </h1>
+            <p>
+                <span class="lang en">Intramuros, the historic walled area within Manila, is the oldest district and historic core of the city. Built by the Spanish in the 16th century, it served as the seat of government and the center of religious and educational activities during the Spanish colonial period.</span>
+                <span class="lang fil">Ang Intramuros, ang makasaysayang napapaderang lugar sa loob ng Maynila, ay ang pinakamatandang distrito at makasaysayang sentro ng lungsod. Itinayo ng mga Espanyol noong ika-16 na siglo, nagsilbi itong upuan ng pamahalaan at sentro ng mga gawaing panrelihiyon at pang-edukasyon noong panahon ng kolonyalismong Espanyol.</span>
+            </p>
+            <p>
+                <span class="lang en">Help us improve your experience by sharing your feedback through our visitor survey.</span>
+                <span class="lang fil">Tulungan kaming mapabuti ang iyong karanasan sa pamamagitan ng pagbabahagi ng iyong feedback sa aming survey para sa mga bisita.</span>
+            </p>
+        </div>
+    </section>
+   
+    <section class="container">
+        <h2 class="section-title">
+            <span class="lang en">Popular Attractions</span>
+            <span class="lang fil">Mga Sikat na Atraksyon</span>
+        </h2>
+        <div class="scroll-wrapper">
+            <div class="attractions-grid horizontal">
+                <!-- Card 1 -->
+                <div class="card">
+                    <img src="Images/Fort Santiago.jpg" alt="Fort Santiago">
+                    <div class="card-content">
+                        <h3>Fort Santiago</h3>
+                        <p>
+                            <span class="lang en">A citadel built by Spanish conquistadors in 1571.</span>
+                            <span class="lang fil">Isang kuta na itinayo ng mga mananakop na Espanyol noong 1571.</span>
+                        </p>
+                        <span class="label">⭐
+                            <span class="lang en">Historic Landmark</span>
+                            <span class="lang fil">Makasaysayang Landmark</span>
+                        </span>
+                    </div>
+                </div>
+           
+                <!-- Card 2 -->
+                <div class="card">
+                    <img src="Images/San Agustin Church.jpg" alt="San Agustin Church">
+                    <div class="card-content">
+                        <h3>San Agustin Church</h3>
+                        <p>
+                            <span class="lang en">A UNESCO World Heritage Site completed in 1607.</span>
+                            <span class="lang fil">Isang UNESCO World Heritage Site na natapos noong 1607.</span>
+                        </p>
+                        <span class="label">🏛 UNESCO World Heritage Site</span>
+                    </div>
+                </div>
+           
+                <!-- Card 3 -->
+                <div class="card">
+                    <img src="Images/Manila Cathedral.jpg" alt="Manila Cathedral">
+                    <div class="card-content">
+                        <h3>Manila Cathedral</h3>
+                        <p>
+                            <span class="lang en">The Mother Church of the Philippines.</span>
+                            <span class="lang fil">Ang Inang Simbahan ng Pilipinas.</span>
+                        </p>
+                        <span class="label">⛪
+                            <span class="lang en">Religious Landmark</span>
+                            <span class="lang fil">Relihiyosong Landmark</span>
+                        </span>
+                    </div>
+                </div>
+           
+                <!-- Card 4 -->
+                <div class="card">
+                    <img src="Images/Casa Manila.jpg" alt="Casa Manila">
+                    <div class="card-content">
+                        <h3>Casa Manila</h3>
+                        <p>
+                            <span class="lang en">A museum depicting colonial lifestyle.</span>
+                            <span class="lang fil">Isang museo na nagpapakita ng kolonyal na pamumuhay.</span>
+                        </p>
+                        <span class="label">🏠
+                            <span class="lang en">Cultural Museum</span>
+                            <span class="lang fil">Museong Kultural</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="take-the-survey">
+        <h2>
+            <span class="lang en">Your Feedback Matters</span>
+            <span class="lang fil">Mahalaga ang Iyong Feedback</span>
+        </h2>
+       
+        <p>
+            <span class="lang en">Help us preserve and improve Intramuros for future generations</span>
+            <span class="lang fil">Tulungan kaming mapanatili at mapabuti ang Intramuros para sa mga susunod na henerasyon</span>
+        </p>
+
+        <h3>Privacy & Consent</h3>
+
+        <p>
+            <span class="lang en">By proceeding, you agree that we may collect and process the feedback you provide. We use this data solely to improve our services and internal operations.</span>
+            <span class="lang fil">Sa pagpapatuloy, sumasang-ayon ka na maaari naming kolektahin at gamitin ang feedback na iyong ibibigay. Gagamitin lamang ang datos na ito upang mapabuti ang aming serbisyo at panloob na operasyon.</span>
+        </p>
+       
+        <label>
+            <input type="checkbox" id="agree-checkbox">
+            <span class="lang en">I have read and agree to the terms above.</span>
+            <span class="lang fil">Nabasa ko at sumasang-ayon ako sa mga tuntunin sa itaas.</span>
+        </label>
+       
+        <br>
+        <br>
+
+        <a href="surveypage.html" id="survey-link" class="survey-button disabled">
+            <span class="lang en">Take the Survey Now</span>
+            <span class="lang fil">Sumagot sa Survey Ngayon</span>
+        </a>
+    </section>
+
+    <footer>
+        <p>(c) 2026 Intramuros Heritage Feedback. A College Web Development Project.</p>
+        <p>
+            <span class="lang en">Preserving History, Building the Future</span>
+            <span class="lang fil">Pagpapanatili ng Kasaysayan, Pagbuo ng Kinabukasan</span>
+        </p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
+
+
