@@ -455,7 +455,7 @@ async function loadResults() {
         });
 
 
-        recentResponses.push(d);
+        if (archResponses.length < 15) archResponses.push(d);
         if (archResponses.length < 15) archResponses.push(d);
     });
 
