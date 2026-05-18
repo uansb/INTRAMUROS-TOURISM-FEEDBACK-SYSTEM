@@ -62,7 +62,8 @@
                         <span class="lang en">Full Name (Optional)</span>
                         <span class="lang fil">Buong Pangalan (Opsyonal)</span>
                     </p>
-                    <input type="text" name="full_name" placeholder="Enter your full name">
+                    <input type="text" name="full_name" placeholder="Enter your full name"
+                        oninput="this.value = this.value.replace(/[0-9]/g, '')">
                 </div>
 
                 <div class="question">
@@ -121,8 +122,10 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">How would you rate the preservation and visual appeal of the historic architecture and scenery? *</span>
-                        <span class="lang fil">Paano mo ire-rate ang preserbasyon at ganda ng mga makasaysayang arkitektura at tanawin? *</span>
+                        <span class="lang en">How would you rate the preservation and visual appeal of the historic
+                            architecture and scenery? *</span>
+                        <span class="lang fil">Paano mo ire-rate ang preserbasyon at ganda ng mga makasaysayang
+                            arkitektura at tanawin? *</span>
                     </p>
                     <div class="star-rating">
                         <input type="radio" name="q1_1" id="star5" value="5" required>
@@ -140,22 +143,28 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">Compared to the modern "straight box/gray" buildings of Manila, what specific architectural or environmental features should be prioritized for preservation? *</span>
-                        <span class="lang fil">Kumpara sa mga modernong gusali sa Maynila, anong mga partikular na katangiang arkitektural o pangkapaligiran ang dapat unahin sa preserbasyon? *</span>
+                        <span class="lang en">Compared to the modern "straight box/gray" buildings of Manila, what
+                            specific architectural or environmental features should be prioritized for preservation?
+                            *</span>
+                        <span class="lang fil">Kumpara sa mga modernong gusali sa Maynila, anong mga partikular na
+                            katangiang arkitektural o pangkapaligiran ang dapat unahin sa preserbasyon? *</span>
                     </p>
                     <textarea name="preservation_priority" placeholder="Type your answer here..." required></textarea>
                 </div>
 
                 <div class="question">
                     <p>
-                        <span class="lang en">Which atmospheric elements of Intramuros contributed most to your overall experience? Select all that apply. *</span>
-                        <span class="lang fil">Aling mga elemento ng kapaligiran sa Intramuros ang pinaka-nakatulong sa iyong karanasan? Piliin ang lahat ng naaangkop. *</span>
+                        <span class="lang en">Which atmospheric elements of Intramuros contributed most to your overall
+                            experience? Select all that apply. *</span>
+                        <span class="lang fil">Aling mga elemento ng kapaligiran sa Intramuros ang pinaka-nakatulong sa
+                            iyong karanasan? Piliin ang lahat ng naaangkop. *</span>
                     </p>
                     <div class="options">
                         <label>
                             <input type="checkbox" name="atmosphere" value="spanish_architecture">
                             <span class="lang en">Well-preserved Spanish-era architecture</span>
-                            <span class="lang fil">Maayos na napangalagaang arkitektura mula sa panahon ng Espanyol</span>
+                            <span class="lang fil">Maayos na napangalagaang arkitektura mula sa panahon ng
+                                Espanyol</span>
                         </label>
                         <label>
                             <input type="checkbox" name="atmosphere" value="scenery">
@@ -164,8 +173,10 @@
                         </label>
                         <label>
                             <input type="checkbox" name="atmosphere" value="cultural">
-                            <span class="lang en">Traditional cultural presence (e.g., kalesa rides and cobblestone streets)</span>
-                            <span class="lang fil">Tradisyonal na presensyang kultural (hal. pagsakay sa kalesa at mga kalsadang cobblestone)</span>
+                            <span class="lang en">Traditional cultural presence (e.g., kalesa rides and cobblestone
+                                streets)</span>
+                            <span class="lang fil">Tradisyonal na presensyang kultural (hal. pagsakay sa kalesa at mga
+                                kalsadang cobblestone)</span>
                         </label>
                         <label>
                             <input type="checkbox" name="atmosphere" value="ancient_ambiance">
@@ -191,7 +202,8 @@
                 <div class="question">
                     <p>
                         <span class="lang en">To what extent do you agree the destination is well-maintained? *</span>
-                        <span class="lang fil">Gaano ka sumasang-ayon na ang destinasyon ay maayos na pinapanatili? *</span>
+                        <span class="lang fil">Gaano ka sumasang-ayon na ang destinasyon ay maayos na pinapanatili?
+                            *</span>
                     </p>
                     <div class="emoji-rating">
                         <input type="radio" name="q2" id="e1" value="1" required>
@@ -248,7 +260,8 @@
                 <div class="question">
                     <p>
                         <span class="lang en">How would you rate the affordability of products and services? *</span>
-                        <span class="lang fil">Paano mo ire-rate ang pagiging abot-kaya ng mga produkto at serbisyo? *</span>
+                        <span class="lang fil">Paano mo ire-rate ang pagiging abot-kaya ng mga produkto at serbisyo?
+                            *</span>
                     </p>
                     <div class="peso-rating">
                         <input type="radio" name="q3" id="peso5" value="5" required>
@@ -342,42 +355,40 @@
                     </div>
                 </div>
             </div>
-<!-- Survey Experience -->
-        <div class="form-container">
-            <h2 class="category-title">
-                <span class="lang en">Survey Experience</span>
-                <span class="lang fil">Karanasan sa Survey</span>
-            </h2>
-            <div class="question">
-                <p>
-                    <span class="lang en">How was your experience answering our survey system? *</span>
-                    <span class="lang fil">Kumusta ang iyong karanasan sa pagsagot ng aming survey system? *</span>
-                </p>
-                <div class="options">
-                    <label><input type="radio" name="survey_experience" value="1" required> 1 - <span class="lang en">Very Poor</span><span class="lang fil">Napakasama</span></label>
-                    <label><input type="radio" name="survey_experience" value="2"> 2 - <span class="lang en">Poor</span><span class="lang fil">Masama</span></label>
-                    <label><input type="radio" name="survey_experience" value="3"> 3 - <span class="lang en">Neutral</span><span class="lang fil">Neutral</span></label>
-                    <label><input type="radio" name="survey_experience" value="4"> 4 - <span class="lang en">Good</span><span class="lang fil">Maganda</span></label>
-                    <label><input type="radio" name="survey_experience" value="5"> 5 - <span class="lang en">Excellent</span><span class="lang fil">Napakaganda</span></label>
+
+            <!-- Survey Experience -->
+            <div class="form-container">
+                <h2 class="category-title">
+                    <span class="lang en">Survey Experience</span>
+                    <span class="lang fil">Karanasan sa Survey</span>
+                </h2>
+                <div class="question">
+                    <p>
+                        <span class="lang en">How was your experience answering our survey system? *</span>
+                        <span class="lang fil">Kumusta ang iyong karanasan sa pagsagot ng aming survey system? *</span>
+                    </p>
+                    <div class="options">
+                        <label><input type="radio" name="survey_experience" value="1" required> 1 - <span
+                                class="lang en">Very Poor</span><span class="lang fil">Napakasama</span></label>
+                        <label><input type="radio" name="survey_experience" value="2"> 2 - <span
+                                class="lang en">Poor</span><span class="lang fil">Masama</span></label>
+                        <label><input type="radio" name="survey_experience" value="3"> 3 - <span
+                                class="lang en">Neutral</span><span class="lang fil">Neutral</span></label>
+                        <label><input type="radio" name="survey_experience" value="4"> 4 - <span
+                                class="lang en">Good</span><span class="lang fil">Maganda</span></label>
+                        <label><input type="radio" name="survey_experience" value="5"> 5 - <span
+                                class="lang en">Excellent</span><span class="lang fil">Napakaganda</span></label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>
+                        <span class="lang en">Please give us your feedback.</span>
+                        <span class="lang fil">Mangyaring ibigay ang iyong feedback.</span>
+                    </p>
+                    <textarea name="survey_feedback" placeholder="Type your feedback here..."></textarea>
                 </div>
             </div>
-       
-   
-
-
-    <br>
-
-
-    <div class="question">
-        <p>
-            <span class="lang en">Please give us your feedback.</span>
-            <span class="lang fil">Mangyaring ibigay ang iyong feedback.</span>
-        </p>
-        <textarea name="survey_feedback" placeholder="Type your feedback here..."></textarea>
-    </div>
-</div>
-
-
 
             <div class="submit-section">
                 <button type="reset" class="clear-button">
@@ -411,17 +422,14 @@
     </main>
 
     <footer>
-        <p>(c) 2026 Intramuros Heritage Feedback. A College Web Development Project.</p>
+        <p>Intramuros Heritage Feedback Website. A Web Development Assessment Activity.</p>
         <p>
             <span class="lang en">Preserving History, Building the Future</span>
             <span class="lang fil">Pagpapanatili ng Kasaysayan, Pagbuo ng Kinabukasan</span>
         </p>
     </footer>
+
     <script type="module" src="script.js"></script>
-
 </body>
+
 </html>
-
-
-
-
