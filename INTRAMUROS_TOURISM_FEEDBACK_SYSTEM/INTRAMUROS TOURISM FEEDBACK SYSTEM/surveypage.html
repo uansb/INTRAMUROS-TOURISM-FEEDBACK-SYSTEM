@@ -96,13 +96,57 @@
                     </select>
                 </div>
 
-                <div class="question">
-                    <p>
-                        <span class="lang en">Where are you from? (Region/Country) *</span>
-                        <span class="lang fil">Taga-saan ka? (Rehiyon/Bansa) *</span>
-                    </p>
-                    <input type="text" name="origin" placeholder="e.g. Pasig, Philippines" required>
-                </div>
+        <div class="question">
+            <p>
+                <span class="lang en">Where are you from?</span>
+                <span class="lang fil">Taga-saan ka?</span>
+            </p>
+
+            <!-- Region --> 
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
+                <span class="lang en">Region *</span>
+                <span class="lang fil">Rehiyon *</span>
+            </label>
+            <select name="origin_region" id="sel-region" required style="margin-bottom:10px;">
+                <option value="" disabled selected>Select Region</option>
+            </select>
+
+            <!-- Province (hidden for NCR) -->
+            <div id="province-row" style="display:none; margin-bottom:10px;">
+                <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
+                    <span class="lang en">Province</span>
+                    <span class="lang fil">Lalawigan</span>
+                </label>
+                <select name="origin_province" id="sel-province">
+                    <option value="" disabled selected>Select Province</option>
+                </select>
+            </div>
+
+            <!-- City / Municipality -->
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
+                <span class="lang en">City / Municipality *</span>
+                <span class="lang fil">Lungsod / Munisipalidad *</span>
+            </label>
+            <select name="origin_city" id="sel-city" required style="margin-bottom:10px;" disabled>
+                <option value="" disabled selected>Select City / Municipality</option>
+            </select>
+
+            <!-- Barangay -->
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
+                <span class="lang en">Barangay *</span>
+                <span class="lang fil">Barangay *</span>
+            </label>
+            <select name="origin_barangay" id="sel-barangay" required style="margin-bottom:10px;" disabled>
+                <option value="" disabled selected>Select Barangay</option>
+            </select>
+
+            <!-- Street -->
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
+                <span class="lang en">Street / House No. (Optional)</span>
+                <span class="lang fil">Kalye / Blg. ng Bahay (Opsyonal)</span>
+            </label>
+            <input type="text" name="origin_street" placeholder="e.g. 123 Rizal St.">
+        </div>
 
                 <div class="question">
                     <p>
