@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey - Intramuros Heritage</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        mark{
+            background-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,8 +91,8 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">Age Group *</span>
-                        <span class="lang fil">Pangkat ng Edad *</span>
+                        <span class="lang en">Age Group <mark style="color: red">*</mark></span>
+                        <span class="lang fil">Pangkat ng Edad <mark style="color: red">*</mark></span>
                     </p>
                     <select name="age_group" required>
                         <option value="" disabled selected>Select your age group</option>
@@ -102,8 +107,8 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">Type of Tourist *</span>
-                        <span class="lang fil">Uri ng Turista *</span>
+                        <span class="lang en">Type of Tourist <mark style="color: red">*</mark></span>
+                        <span class="lang fil">Uri ng Turista <mark style="color: red">*</mark></span>
                     </p>
                     <select name="tourist_type" required>
                         <option value="" disabled selected>Select tourist type</option>
@@ -116,15 +121,15 @@
 
         <div class="question">
     <p>
-        <span class="lang en">Where are you from? *</span>
-        <span class="lang fil">Taga-saan ka? *</span>
+        <span class="lang en">Where are you from? <mark style="color: red">*</mark></span>
+        <span class="lang fil">Taga-saan ka? <mark style="color: red">*</mark></span>
     </p>
 
     <!-- Shown for International tourists only -->
     <div id="international-origin" style="display:none;">
         <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
-            <span class="lang en">Country of Origin *</span>
-            <span class="lang fil">Bansang Pinagmulan *</span>
+            <span class="lang en">Country of Origin <mark style="color: red">*</mark></span>
+            <span class="lang fil">Bansang Pinagmulan <mark style="color: red">*</mark></span>
         </label>
         <input type="text" name="origin_country" id="origin-country-input"
                placeholder="e.g. Japan, United States, South Korea"
@@ -135,8 +140,8 @@
     <div id="local-origin">
         <!-- Region -->
         <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
-            <span class="lang en">Region *</span>
-            <span class="lang fil">Rehiyon *</span>
+            <span class="lang en">Region <mark style="color: red">*</mark></span>
+            <span class="lang fil">Rehiyon <mark style="color: red">*</mark></span>
         </label>
         <select name="origin_region" id="sel-region" required style="margin-bottom:10px;">
             <option value="" disabled selected>Select Region</option>
@@ -155,8 +160,8 @@
 
         <!-- City / Municipality -->
         <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
-            <span class="lang en">City / Municipality *</span>
-            <span class="lang fil">Lungsod / Munisipalidad *</span>
+            <span class="lang en">City / Municipality <mark style="color: red">*</mark></span>
+            <span class="lang fil">Lungsod / Munisipalidad <mark style="color: red">*</mark></span>
         </label>
         <select name="origin_city" id="sel-city" required style="margin-bottom:10px;" disabled>
             <option value="" disabled selected>Select City / Municipality</option>
@@ -164,8 +169,8 @@
 
         <!-- Barangay -->
         <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
-            <span class="lang en">Barangay *</span>
-            <span class="lang fil">Barangay *</span>
+            <span class="lang en">Barangay <mark style="color: red">*</mark></span>
+            <span class="lang fil">Barangay <mark style="color: red">*</mark></span>
         </label>
         <select name="origin_barangay" id="sel-barangay" required style="margin-bottom:10px;" disabled>
             <option value="" disabled selected>Select Barangay</option>
@@ -182,8 +187,8 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">Visit Date *</span>
-                        <span class="lang fil">Petsa ng Pagbisita *</span>
+                        <span class="lang en">Visit Date <mark style="color: red">*</mark></span>
+                        <span class="lang fil">Petsa ng Pagbisita <mark style="color: red">*</mark></span>
                     </p>
                     <input type="date" name="visit_date" required>
                 </div>
@@ -199,9 +204,9 @@
                 <div class="question">
                     <p>
                         <span class="lang en">How would you rate the preservation and visual appeal of the historic
-                            architecture and scenery? *</span>
+                            architecture and scenery? <mark style="color: red">*</mark></span>
                         <span class="lang fil">Paano mo ire-rate ang preserbasyon at ganda ng mga makasaysayang
-                            arkitektura at tanawin? *</span>
+                            arkitektura at tanawin? <mark style="color: red">*</mark></span>
                     </p>
                     <div class="star-rating">
                         <input type="radio" name="q1_1" id="star5" value="5" required>
@@ -221,9 +226,9 @@
                     <p>
                         <span class="lang en">Compared to the modern "straight box/gray" buildings of Manila, what
                             specific architectural or environmental features should be prioritized for preservation?
-                            *</span>
+                            <mark style="color: red">*</mark></span>
                         <span class="lang fil">Kumpara sa mga modernong gusali sa Maynila, anong mga partikular na
-                            katangiang arkitektural o pangkapaligiran ang dapat unahin sa preserbasyon? *</span>
+                            katangiang arkitektural o pangkapaligiran ang dapat unahin sa preserbasyon? <mark style="color: red">*</mark></span>
                     </p>
                     <textarea name="preservation_priority" placeholder="Type your answer here..." required></textarea>
                 </div>
@@ -231,9 +236,9 @@
                 <div class="question">
                     <p>
                         <span class="lang en">Which atmospheric elements of Intramuros contributed most to your overall
-                            experience? Select all that apply. *</span>
+                            experience? Select all that apply. <mark style="color: red">*</mark></span>
                         <span class="lang fil">Aling mga elemento ng kapaligiran sa Intramuros ang pinaka-nakatulong sa
-                            iyong karanasan? Piliin ang lahat ng naaangkop. *</span>
+                            iyong karanasan? Piliin ang lahat ng naaangkop. <mark style="color: red">*</mark></span>
                     </p>
                     <div class="options">
                         <label>
@@ -277,9 +282,9 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">To what extent do you agree the destination is well-maintained? *</span>
+                        <span class="lang en">To what extent do you agree the destination is well-maintained? <mark style="color: red">*</mark></span>
                         <span class="lang fil">Gaano ka sumasang-ayon na ang destinasyon ay maayos na pinapanatili?
-                            *</span>
+                            <mark style="color: red">*</mark></span>
                     </p>
                     <div class="emoji-rating">
                         <input type="radio" name="q2" id="e1" value="1" required>
@@ -335,9 +340,9 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">How would you rate the affordability of products and services? *</span>
+                        <span class="lang en">How would you rate the affordability of products and services? <mark style="color: red">*</mark></span>
                         <span class="lang fil">Paano mo ire-rate ang pagiging abot-kaya ng mga produkto at serbisyo?
-                            *</span>
+                            <mark style="color: red">*</mark></span>
                     </p>
                     <div class="peso-rating">
                         <input type="radio" name="q3" id="peso5" value="5" required>
@@ -393,8 +398,8 @@
 
                 <div class="question">
                     <p>
-                        <span class="lang en">How easy was it to navigate the area? *</span>
-                        <span class="lang fil">Gaano kadali ang maglibot sa lugar? *</span>
+                        <span class="lang en">How easy was it to navigate the area? <mark style="color: red">*</mark></span>
+                        <span class="lang fil">Gaano kadali ang maglibot sa lugar? <mark style="color: red">*</mark></span>
                     </p>
                     <div class="nav-slider-wrapper">
                         <div class="nav-line"></div>
@@ -440,8 +445,8 @@
                 </h2>
                 <div class="question">
                     <p>
-                        <span class="lang en">How was your experience answering our survey system? *</span>
-                        <span class="lang fil">Kumusta ang iyong karanasan sa pagsagot ng aming survey system? *</span>
+                        <span class="lang en">How was your experience answering our survey system? <mark style="color: red">*</mark></span>
+                        <span class="lang fil">Kumusta ang iyong karanasan sa pagsagot ng aming survey system? <mark style="color: red">*</mark></span>
                     </p>
                     <div class="options">
                         <label><input type="radio" name="survey_experience" value="1" required> 1 - <span
