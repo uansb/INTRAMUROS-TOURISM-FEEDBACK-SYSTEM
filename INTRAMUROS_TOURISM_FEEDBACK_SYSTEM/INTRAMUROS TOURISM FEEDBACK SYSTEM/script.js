@@ -40,6 +40,7 @@
         visitDateInput.setAttribute('max', today);
     }        
      initAddressDropdowns();
+     initTouristTypeToggle(); 
     };
 
 
@@ -53,14 +54,20 @@
             const atmosphereChecked = [...form.querySelectorAll('input[name="atmosphere"]:checked')]
                 .map(cb => cb.value);
             const otherAtmosphere = form.querySelector('input[name="other_atmosphere"]').value.trim();
-            if (otherAtmosphere) atmosphereChecked.push('other: ' + otherAtmosphere);
-
+                        if (otherAtmosphere) atmosphereChecked.push('other: ' + otherAtmosphere);
+            const firstName = form.querySelector('input[name="first_name"]')?.value.trim() || '';
+            const lastName  = form.querySelector('input[name="last_name"]')?.value.trim()  || '';
+            const fullName  = [firstName, lastName].filter(Boolean).join(' ') || 'Anonymous';         
+            const isInternational = form.querySelector('select[name="tourist_type"]').value === 'international';
 
             const surveyData = {
-                name:                form.querySelector('input[type="text"]').value.trim() || 'Anonymous',
+                name: fullName,
                 ageGroup:            form.querySelector('select[name="age_group"]').value,
                 touristType:         form.querySelector('select[name="tourist_type"]').value,
-                origin: [
+
+                origin: isInternational
+                ? (form.querySelector('input[name="origin_country"]')?.value.trim() || 'Unknown')
+                : [
                 form.querySelector('select[name="origin_region"]')?.selectedOptions[0]?.text,
                 form.querySelector('select[name="origin_province"]')?.selectedOptions[0]?.text,
                 form.querySelector('select[name="origin_city"]')?.selectedOptions[0]?.text,
@@ -205,5 +212,32 @@ async function initAddressDropdowns() {
         const barangays = await fetchJSON(`${BASE}/cities-municipalities/${selCity.value}/barangays/`);
         populate(selBarangay, barangays, 'code', 'name', null);
         selBarangay.disabled = false;
+    });
+}
+
+//function for international tourist type
+function initTouristTypeToggle() {
+    const touristTypeSelect = document.querySelector('select[name="tourist_type"]');
+    const internationalDiv = document.getElementById('international-origin');
+    const localDiv = document.getElementById('local-origin');
+    const countryInput = document.getElementById('origin-country-input');
+    const selRegion = document.getElementById('sel-region');
+    const selCity = document.getElementById('sel-city');
+    const selBarangay = document.getElementById('sel-barangay');
+    if (!touristTypeSelect) return;
+
+    touristTypeSelect.addEventListener('change', () => {
+        const isInternational = touristTypeSelect.value === 'international';
+
+        internationalDiv.style.display = isInternational ? 'block' : 'none';
+        localDiv.style.display = isInternational ? 'none' : 'block';
+
+        // Swap required + disabled attributes so form validation works correctly
+        countryInput.disabled = !isInternational;
+        countryInput.required = isInternational;
+
+        selRegion.required = !isInternational;
+        selCity.required = !isInternational;
+        selBarangay.required = !isInternational;
     });
 }
