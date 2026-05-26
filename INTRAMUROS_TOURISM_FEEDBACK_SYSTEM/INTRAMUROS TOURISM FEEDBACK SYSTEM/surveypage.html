@@ -74,8 +74,8 @@
                                 <span class="lang fil">Pangalan</span>
                             </label>
                             <input type="text" name="first_name" placeholder="Juan"
-                                oninput="this.value = this.value.replace(/[0-9]/g, '')"
-                                style="width:100%;">
+                            oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s.]/g, '')"
+                            style="width:100%;">
                         </div>
                         <div style="flex: 1;">
                             <label style="font-size:13px; color:#666; display:block; margin-bottom:4px;">
@@ -83,8 +83,8 @@
                                 <span class="lang fil">Apelyido</span>
                             </label>
                             <input type="text" name="last_name" placeholder="dela Cruz"
-                                oninput="this.value = this.value.replace(/[0-9]/g, '')"
-                                style="width:100%;">
+                            oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s.]/g, '')"
+                            style="width:100%;">
                         </div>
                     </div>
                 </div>
