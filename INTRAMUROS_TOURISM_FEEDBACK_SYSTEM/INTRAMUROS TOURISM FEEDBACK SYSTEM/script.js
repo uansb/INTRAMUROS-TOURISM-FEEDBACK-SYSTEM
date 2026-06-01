@@ -61,26 +61,26 @@
             const isInternational = form.querySelector('select[name="tourist_type"]').value === 'international';
 
             const surveyData = {
-                name: fullName,
+                name:                fullName,
                 ageGroup:            form.querySelector('select[name="age_group"]').value,
                 touristType:         form.querySelector('select[name="tourist_type"]').value,
-
-                origin: isInternational
-                ? (form.querySelector('input[name="origin_country"]')?.value.trim() || 'Unknown')
-                : [
-                form.querySelector('select[name="origin_region"]')?.selectedOptions[0]?.text,
-                form.querySelector('select[name="origin_province"]')?.selectedOptions[0]?.text,
-                form.querySelector('select[name="origin_city"]')?.selectedOptions[0]?.text,
-                form.querySelector('select[name="origin_barangay"]')?.selectedOptions[0]?.text,
-                form.querySelector('input[name="origin_street"]')?.value.trim()
-                ].filter(Boolean).join(', '),
+                origin:              isInternational
+                                     ? (form.querySelector('input[name="origin_country"]')?.value.trim() || 'Unknown')
+                                     : [
+                                         form.querySelector('select[name="origin_region"]')?.selectedOptions[0]?.text,
+                                         form.querySelector('select[name="origin_province"]')?.selectedOptions[0]?.text,
+                                         form.querySelector('select[name="origin_city"]')?.selectedOptions[0]?.text,
+                                         form.querySelector('select[name="origin_barangay"]')?.selectedOptions[0]?.text,
+                                         form.querySelector('input[name="origin_street"]')?.value.trim()
+                                       ].filter(Boolean).join(', '),
                 visitDate:           form.querySelector('input[name="visit_date"]').value,
-                architectureRating:  form.querySelector('input[name="q1_1"]:checked')?.value || null,
+                architectureRating:  Number(form.querySelector('input[name="q1_1"]:checked')?.value) || null,
                 preservationNote:    form.querySelector('textarea').value.trim(),
                 atmosphereElements:  atmosphereChecked,
-                maintenanceRating:   form.querySelector('input[name="q2"]:checked')?.value || null,
-                affordabilityRating: form.querySelector('input[name="q3"]:checked')?.value || null,
-                navigationRating: form.querySelector('input[name="q4"]').value || null,
+                otherAtmosphere:     otherAtmosphere || null,
+                maintenanceRating:   Number(form.querySelector('input[name="q2"]:checked')?.value)   || null,
+                affordabilityRating: Number(form.querySelector('input[name="q3"]:checked')?.value)   || null,
+                navigationRating:    Number(form.querySelector('input[name="q4"]:checked')?.value)   || null,
                 submittedAt:         serverTimestamp()
             };
 
